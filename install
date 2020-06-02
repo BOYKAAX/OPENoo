@@ -22,6 +22,7 @@ sudo chmod +x tg
 lua OPEN.lua
 sudo chmod +x OPEN
 sudo chmod +x ./BK
+./BK
 }
 if [ "$1" = "install" ]; then
 install
